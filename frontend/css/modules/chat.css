@@ -1,0 +1,556 @@
+/* ===================================
+    聊天模块样式 - 定义聊天界面和玩偶的外观与行为
+   =================================== */
+
+/* ===================================
+    1. CSS变量定义 - 集中管理颜色、尺寸等可变值
+   =================================== */
+:root {
+    /* 主题颜色 */
+    --primary-color: #00ffff;
+    --primary-dark: #0080ff;
+    --secondary-color: #ff00ff;
+    --secondary-dark: #ff0080;
+    --danger-color: #ff5555;
+
+    /* 背景颜色 */
+    --chat-bg: rgba(26, 31, 58, 0.9);
+    --chat-input-bg: rgba(10, 14, 39, 0.7);
+    --chat-header-bg: rgba(10, 14, 39, 0.8);
+    --message-bg: rgba(10, 14, 39, 0.7);
+    --user-message-bg: rgba(0, 128, 255, 0.3);
+
+    /* 文本颜色 */
+    --primary-text: #e0e0e0;
+    --primary-text-dark: #0a0e27;
+
+    /* 边框颜色 */
+    --primary-border: rgba(0, 255, 255, 0.3);
+    --primary-border-light: rgba(0, 255, 255, 0.2);
+    --primary-border-focus: rgba(0, 255, 255, 0.5);
+
+    /* 尺寸 */
+    --mascot-size: 70px;
+    --mascot-body-size: 50px;
+    --avatar-size: 32px;
+    --send-btn-size: 36px;
+    --chat-height: 400px;
+
+    /* 动画时长 */
+    --transition-fast: 0.3s;
+    --transition-normal: 0.4s;
+    --transition-slow: 0.6s;
+
+    /* 字体 */
+    --chat-font: 'RuimeiZhangQingpingHardPen', 'Orbitron', sans-serif;
+}
+
+/* ===================================
+    2. 通用样式 - 可复用的样式类
+   =================================== */
+
+/* 渐变背景 - 青色到蓝色 */
+.gradient-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+/* 渐变背景 - 紫色到粉红色 */
+.gradient-secondary {
+    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+}
+
+/* 发光效果 - 青色 */
+.glow-primary {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* 发光效果 - 蓝色 */
+.glow-dark {
+    box-shadow: 0 5px 15px rgba(0, 128, 255, 0.3);
+}
+
+/* 悬停放大效果 */
+.hover-scale {
+    transition: transform var(--transition-fast);
+}
+
+.hover-scale:hover {
+    transform: scale(1.1);
+}
+
+/* 性能优化 - 针对动画元素 */
+.optimize-animation {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* ===================================
+    3. 动漫玩偶样式 - 页面左下角的互动玩偶
+   =================================== */
+
+/* 玩偶容器 */
+.mascot-container {
+    position: fixed;
+    bottom: 50px;
+    left: 30px;
+    z-index: 10;
+}
+
+/* 玩偶主体 */
+.mascot {
+    position: relative;
+    width: var(--mascot-size);
+    height: var(--mascot-size);
+    animation: mascotFloat 4s ease-in-out infinite;
+    pointer-events: auto;
+    cursor: pointer;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* 玩偶身体 */
+.mascot-body {
+    position: relative;
+    width: var(--mascot-body-size);
+    height: var(--mascot-body-size);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 128, 255, 0.3);
+    margin: 0 auto;
+}
+
+/* 玩偶面部容器 */
+.mascot-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* 玩偶眼睛容器 */
+.mascot-eyes {
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    top: 20px;
+    left: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 单个眼睛 */
+.mascot-eye {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 瞳孔 */
+.mascot-eye::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #000;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    animation: lookAround 3s infinite;
+}
+
+/* 玩偶嘴巴 */
+.mascot-mouth {
+    position: absolute;
+    width: 15px;
+    height: 8px;
+    border-radius: 0 0 8px 8px;
+    background: rgba(0, 0, 0, 0.7);
+    top: 35px;
+    left: 22px;
+}
+
+/* 手臂容器 */
+.mascot-arms {
+    position: absolute;
+    width: 80px;
+    height: 15px;
+    top: 25px;
+    left: -10px;
+}
+
+/* 单个手臂 */
+.mascot-arm {
+    position: absolute;
+    width: 20px;
+    height: 8px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 4px;
+}
+
+/* 左臂 */
+.mascot-arm.left {
+    left: 0;
+    transform-origin: right center;
+    animation: waveLeft 3s ease-in-out infinite;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* 右臂 */
+.mascot-arm.right {
+    right: 0;
+    transform-origin: left center;
+    animation: waveRight 3s ease-in-out infinite;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* 玩偶阴影 */
+.mascot-shadow {
+    position: absolute;
+    width: 40px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    bottom: -5px;
+    left: 10px;
+}
+
+/* 玩偶弹跳动画 */
+.mascot-bounce {
+    animation: bounce var(--transition-slow) ease-out;
+}
+
+/* ===================================
+    4. 聊天界面样式 - 聊天窗口的外观和布局
+   =================================== */
+
+/* 聊天容器 */
+.chat-container {
+    position: relative;
+    width: calc(100% - 40px);
+    height: 0;
+    background: var(--chat-bg);
+    border: 1px solid var(--primary-border);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    pointer-events: none;
+    transition: height var(--transition-normal) ease,
+                pointer-events var(--transition-normal) ease,
+                opacity var(--transition-normal) ease;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    position: relative;
+    opacity: 0;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* 顶部扫描线特效 */
+.chat-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    animation: scanLine 2s infinite;
+    z-index: 1;
+}
+
+/* 扫描线背景 */
+.chat-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg,
+            rgba(0, 255, 255, 0.03) 0px,
+            transparent 1px,
+            transparent 2px,
+            rgba(0, 255, 255, 0.03) 3px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity var(--transition-normal) ease;
+}
+
+/* 激活状态 - 显示扫描线背景 */
+.chat-container.active::after {
+    opacity: 1;
+}
+
+/* 聊天容器激活状态 */
+.chat-container.active {
+    height: var(--chat-height);
+    pointer-events: auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 255, 0.2);
+    opacity: 1;
+}
+
+/* ===================================
+    5. 聊天头部 - 包含标题和控制按钮
+   =================================== */
+
+/* 聊天头部容器 */
+.chat-header {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: var(--chat-header-bg);
+    border-bottom: 1px solid var(--primary-border);
+}
+
+/* 头部扫描线特效 */
+.chat-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+    animation: scanLine 3s infinite;
+    z-index: 1;
+}
+
+/* 头部按钮容器 */
+.chat-header-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* 通用按钮样式 */
+.chat-button {
+    background: none;
+    border: none;
+    color: var(--primary-text);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all var(--transition-fast);
+}
+
+/* 清除聊天按钮 */
+.chat-clear {
+    background: none;
+    border: none;
+    color: var(--primary-text);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all var(--transition-fast);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+/* 清除按钮悬停效果 */
+.chat-clear:hover {
+    color: var(--danger-color);
+    background: rgba(255, 85, 85, 0.1);
+}
+
+/* 聊天标题 */
+.chat-title {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+/* 关闭按钮 */
+.chat-close {
+    background: none;
+    border: none;
+    color: var(--primary-text);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all var(--transition-fast);
+}
+
+/* 关闭按钮悬停效果 */
+.chat-close:hover {
+    color: var(--danger-color);
+    transform: scale(1.2);
+}
+
+/* ===================================
+    6. 消息样式 - 用户和机器人消息的显示方式
+   =================================== */
+
+/* 聊天主体 */
+.chat-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 消息容器 */
+.chat-message {
+    display: flex;
+    gap: 8px;
+    max-width: 85%;
+}
+
+/* 机器人消息 */
+.bot-message {
+    align-self: flex-start;
+}
+
+/* 用户消息 */
+.user-message {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+/* 消息头像 */
+.message-avatar {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* 机器人头像 */
+.bot-avatar {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: #fff;
+}
+
+/* 用户头像 */
+.user-avatar {
+    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+    color: #fff;
+}
+
+/* 消息内容 */
+.message-content {
+    background: var(--message-bg);
+    color: var(--primary-text);
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: calc(15px * var(--card-font-size-multiplier));
+    line-height: 1.4;
+    word-wrap: break-word;
+    font-family: var(--chat-font);
+}
+
+/* 用户消息内容 */
+.user-message .message-content {
+    background: var(--user-message-bg);
+    border: 1px solid var(--primary-border-light);
+}
+
+/* ===================================
+    7. 输入控件样式 - 聊天输入框和发送按钮
+   =================================== */
+
+/* 输入容器 */
+.chat-input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid var(--primary-border-light);
+    background: var(--chat-header-bg);
+}
+
+/* 聊天输入框 */
+#chatInput {
+    flex: 1;
+    background: var(--chat-input-bg);
+    border: 1px solid var(--primary-border);
+    border-radius: 20px;
+    color: var(--primary-text);
+    padding: 8px 15px;
+    font-size: 14px;
+    outline: none;
+    transition: all var(--transition-fast);
+    font-family: var(--chat-font);
+}
+
+/* 输入框聚焦效果 */
+#chatInput:focus {
+    border-color: var(--primary-border-focus);
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+/* 输入框占位符文本 */
+#chatInput::placeholder {
+    color: rgba(224, 224, 224, 0.5);
+}
+
+/* 发送按钮 */
+#chatSend {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border: none;
+    border-radius: 50%;
+    width: var(--send-btn-size);
+    height: var(--send-btn-size);
+    color: var(--primary-text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    transition: all var(--transition-fast);
+}
+
+/* 发送按钮悬停效果 */
+#chatSend:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* ===================================
+    8. 打字指示器 - 显示机器人正在输入
+   =================================== */
+
+/* 打字指示器容器 */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 10px 12px;
+    background: var(--message-bg);
+    border-radius: 12px;
+    width: fit-content;
+}
+
+/* 打字指示点 */
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* 第二个点 - 延迟0.2秒开始动画 */
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+/* 第三个点 - 延迟0.4秒开始动画 */
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}

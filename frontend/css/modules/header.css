@@ -1,0 +1,128 @@
+/* ===================================
+    头部区域 - 设置页面顶部导航栏样式
+    功能：定义页面顶部的固定导航栏和按钮样式
+    特点：使用毛玻璃效果、圆形按钮和渐变发光效果
+    包含：主题切换按钮、后台按钮等UI组件
+    适用于：整个网站的顶部导航区域
+   =================================== */
+
+/* 2. 头部区域 - 设置页面顶部导航栏样式 */
+header {
+    color: #fff;
+    text-align: center;
+    position: fixed; /* 修改为固定定位 */
+    top: 0; /* 固定在顶部 */
+    left: 0; /* 固定在左侧 */
+    right: 0; /* 固定在右侧 */
+    overflow: hidden;
+    min-height: 90px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: min-height 0.4s ease;
+    z-index: 1000; /* 确保header在其他元素之上 */
+    background: rgba(255, 255, 255, 0.1); /* 浅色半透明背景 */
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    -webkit-backdrop-filter: blur(10px); /* 兼容Safari浏览器 */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+header h1 {
+    font-size: calc(2.8rem * var(--title-font-size-multiplier));
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.9), 0 0 30px rgba(0, 255, 255, 0.5);
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========================================
+    圆形按钮样式
+   ======================================== */
+
+/* 通用圆形按钮基础样式 */
+.round-button,
+.theme-toggle,
+.admin-btn {
+    background: rgba(26, 31, 58, 0.8);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 圆形按钮发光效果 */
+.round-button::before,
+.theme-toggle::before,
+.admin-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+/* 圆形按钮悬停效果 */
+.round-button:hover,
+.theme-toggle:hover,
+.admin-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+/* 圆形按钮悬停时的发光效果 */
+.round-button:hover::before,
+.theme-toggle:hover::before,
+.admin-btn:hover::before {
+    opacity: 0.5;
+    animation: glow 3s ease-in-out infinite alternate;
+}

@@ -1,0 +1,39 @@
+/* ===================================
+    CSS 变量定义
+   =================================== */
+
+:root {
+    /* 颜色变量 */
+    --primary-color: #0a0e27;
+    --secondary-color: #1a1e37;
+    --accent-color: #00ffff;
+    --text-color: #ffffff;
+    --text-secondary: #b0b0b0;
+    --background-color: #0a0e27;
+    --card-background: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.1);
+
+    /* 阴影 */
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.4);
+
+    /* 字体 */
+    --font-family: 'Orbitron', sans-serif;
+    --font-size-base: 1rem;
+    --font-size-small: 0.875rem;
+    --font-size-large: 1.25rem;
+
+    /* 间距 */
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 1.5rem;
+    --spacing-xlarge: 2rem;
+
+    /* 边框半径 */
+    --border-radius: 8px;
+    --border-radius-large: 12px;
+
+    /* 过渡 */
+    --transition: all 0.3s ease;
+    --transition-fast: all 0.15s ease;
+}

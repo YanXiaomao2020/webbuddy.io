@@ -1,0 +1,187 @@
+/* ===================================
+    动画效果 - 集中管理所有动画
+    按功能分类组织动画，并在注释中注明使用位置
+   =================================== */
+
+/* 粒子浮动动画 */
+@keyframes float {
+    0% { transform: translateY(100vh) translateX(0); }
+    100% { transform: translateY(-100vh) translateX(100px); }
+}
+
+/* 性能优化类 */
+.optimize-performance {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* 发光效果动画 */
+@keyframes glow {
+    from { opacity: calc(var(--glow-intensity) * 0.6); }
+    to { opacity: calc(var(--glow-intensity) * 1.4); }
+}
+
+/* 淡入效果 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 从上方滑入效果 */
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 赛博朋克扫描效果 */
+@keyframes cyber-scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 从右侧滑入效果 */
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* 从右侧滑出效果 */
+@keyframes slideOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* 弹跳效果 */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-15px); }
+    60% { transform: translateY(-7px); }
+}
+
+/* 吉祥物浮动效果 */
+@keyframes mascotFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 从下方淡入效果 */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 左右看效果 */
+@keyframes lookAround {
+    0%, 20%, 50%, 80%, 100% { transform: translate(0, 0); }
+    40% { transform: translate(1px, 0); }
+    60% { transform: translate(-1px, 0); }
+}
+
+/* 向左挥手效果 */
+@keyframes waveLeft {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-15deg); }
+}
+
+/* 向右挥手效果 */
+@keyframes waveRight {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(15deg); }
+}
+
+/* 扫描线效果 */
+@keyframes scanLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 打字效果 */
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
+}
+
+/* 横向扫描线效果 */
+@keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* 旋转效果 */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 脉冲效果 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* 闪烁效果 */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 震动效果 */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* 拉伸效果 */
+@keyframes stretch {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(1.1); }
+}
+
+/* 星空主题动画效果 */
+
+/* 水波纹涟漪动画 */
+@keyframes ripple-animation {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* 星星闪烁动画 */
+@keyframes twinkle {
+    0% {
+        opacity: 0.4;
+        background-position: 0% 0%;
+    }
+    50% {
+        opacity: 0.9;
+        background-position: 50% 50%;
+    }
+    100% {
+        opacity: 0.6;
+        background-position: 100% 100%;
+    }
+}
+
+/* 边框旋转动画 */
+@keyframes borderRotate {
+    0% { clip-path: polygon(0 0, 0 0, 0 0, 0 0); }
+    25% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+    50% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    75% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+/* 背景移动动画 */
+@keyframes backgroundMove {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+}
+
+/* 流星动画已移除 */

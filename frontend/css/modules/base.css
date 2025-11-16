@@ -1,0 +1,136 @@
+/* ===================================
+    全局样式 - 设置所有元素的基础样式
+   =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    /* 字体大小变量 */
+    --title-font-size-multiplier: 1.0;
+    /* 标题字体大小倍数 */
+    --card-font-size-multiplier: 1.0;
+    /* 卡片字体大小倍数 */
+
+    /* 通用动画变量 */
+    --transition-speed: 0.3s;
+    /* 过渡动画速度 */
+    --glow-intensity: 0.5;
+    /* 发光效果强度 */
+}
+
+/* 页面主体样式 - 设置页面基本布局和背景 */
+body {
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(to bottom, #0a0e27 0%, #1a1e37 100%);
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    font-size: calc(16px * var(--title-font-size-multiplier));
+}
+
+
+/* 通用容器 - 设置页面布局和容器样式 */
+.container {
+    max-width: 100%;
+    margin: 0 10px;
+    padding: 5px 10px;
+    position: relative;
+}
+
+/* 主内容区域 - 设置页面主体布局 */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px; /* 减少与固定header之间的距离 */
+}
+
+/* ===================================
+    滚动条样式 - 定义自定义滚动条的外观
+    功能：设置滚动条的宽度、颜色和交互效果
+    特点：使用渐变色和发光效果，增强科技感
+    适用于：网站中所有可滚动区域的滚动条
+   =================================== */
+
+/* 自定义滚动条样式 - 更细更有科技感 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(10, 14, 39, 0.2);
+    border-radius: 3px;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.5), rgba(0, 128, 255, 0.5));
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.7), rgba(0, 128, 255, 0.7));
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+/* ===================================
+    布局样式 - 定义页面的整体布局结构
+    功能：设置页面主体、左侧内容区域和页脚的布局
+    特点：使用Flexbox布局实现响应式设计
+    适用于：整个页面的布局框架
+   =================================== */
+
+/* 主内容区域 - 设置页面主体布局 */
+.main-layout {
+    width: 100%;
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    align-items: flex-start; /* 确保子元素顶部对齐 */
+}
+
+.left-content-container {
+    width: 80%; /* 占据页面左侧90%的区域 */
+    display: flex;
+    flex-direction: column; /* 纵向布局 */
+    gap: 1.5rem;
+}
+
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: flex-start;
+    max-width: 100%; /* 修改为100%宽度，适应纵向布局 */
+}
+
+/* 5. 页脚 */
+footer {
+    height: 50px;
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.9) 0%, rgba(26, 31, 58, 0.9) 100%);
+    color: #e0e0e0;
+    text-align: center;
+    padding: 5px 0;
+    margin-top: auto;
+    border-top: 1px solid rgba(0, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+

@@ -1,0 +1,28 @@
+/* ===================================
+    桌面端样式 - 模块化版本
+    引入所有CSS模块
+   =================================== */
+
+/* 引入CSS变量和主题 */
+@import url('modules/variables.css');
+@import url('modules/fonts.css');
+
+/* 引入基础样式 */
+@import url('modules/base.css');
+
+/* 引入组件样式 */
+@import url('modules/header.css');
+@import url('modules/search.css');
+@import url('modules/navigation.css');
+@import url('modules/content.css');
+@import url('modules/website-cards.css');
+@import url('modules/chat.css');
+@import url('modules/modal.css');
+@import url('modules/components.css');
+@import url('modules/right-sidebar.css');
+
+/* 引入主题和效果 */
+
+@import url('modules/themes/starry-theme.css');
+@import url('modules/animations.css');
+@import url('modules/scrollbar.css');

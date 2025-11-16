@@ -1,1 +1,219 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN" class="starry-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webbuddy - 网站导航</title>
+    <link rel="stylesheet" href="css/desktop-only-modular.css?v=9">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- 主题相关CSS -->
+    <link rel="stylesheet" href="css/modules/themes/starry-theme.css">
+</head>
+
+<body class="starry-theme">
+    <!-- 主题背景容器 -->
+    <div id="particles"></div>
+    <div class="theme-background"></div>
+    <!-- 流星效果已移除 -->
+    
+    <!-- 页面头部 -->
+    <header>
+        <div class="header-content">
+            <div class="header-left">
+                <h1><i class="fas fa-compass"></i> Webbuddy</h1>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索网站...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-buttons">
+                </div>
+            </div>
+        </div>
+
+        <!-- 智能机器人对话框 -->
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <div class="chat-title">智能助手</div>
+                <div class="chat-header-buttons">
+                    <button class="chat-clear" id="chatClear" title="清空聊天记录">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="chat-close" id="chatClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="chat-message bot-message">
+                    <div class="message-avatar bot-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        你好！我是Webbuddy的智能助手，有什么可以帮助你的吗？
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" placeholder="输入你的问题..." />
+                <button id="chatSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="main-layout">
+                <!-- 左侧内容区域 -->
+                <div class="left-content-container">
+                    <div class="content-wrapper">
+                        <aside class="category-nav">
+                            <h3>分类导航</h3>
+                            <ul class="nav-list">
+                                <!-- 分类导航将通过JavaScript动态生成 -->
+                            </ul>
+                        </aside>
+                        <section class="categories">
+                            <!-- 分类和网站将通过JavaScript动态生成 -->
+                        </section>
+                    </div>
+
+                    <!-- 笔记跳转按钮 -->
+                    <div class="note-button-container">
+                        <!-- 笔记按钮内容将通过JavaScript动态渲染 -->
+                    </div>
+                </div>
+
+                <!-- 右侧功能区域 -->
+                <div class="stats-panel">
+                    <div class="stats-panel-image">
+                        <img src="../../Images/08.jpg">
+                    </div>
+                    <div class="stats-admin-btn-container">
+                        <button id="adminBtn" class="stats-admin-btn" title="进入后台管理">
+                            <i class="fas fa-user-shield"></i>
+                        </button>
+                    </div>
+                    <h3> Webbuddy</h3>
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-info">
+                                <div class="stat-value" id="totalCategories">0</div>
+                                <div class="stat-label">分类</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-item">
+                            <div class="stat-info">
+                                <div class="stat-value" id="totalWebsites">0</div>
+                                <div class="stat-label">网站</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-item">
+                            <div class="stat-info">
+                                <div class="stat-value" id="totalNotes">0</div>
+                                <div class="stat-label">笔记</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="fontSettingsBtn" class="font-settings-btn" >
+                        <i class="fas fa-font"></i>
+                        <span>字体设置</span>
+                    </button>
+
+                    <div class="jitang-container">
+                        <h3 class="jitang-title">心灵鸡汤</h3>
+                        <div class="jitang-content" id="jitangContent">点击下方按钮获取随机心灵鸡汤...</div>
+                        <button class="jitang-refresh-btn" id="jitangRefreshBtn">
+                            <i class="fas fa-sync-alt"></i> 换一篇
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Webbuddy. 所有权利保留。</p>
+            <div class="cyber-line"></div>
+        </div>
+    </footer>
+
+    <!-- 动漫玩偶 -->
+    <div class="mascot-container">
+        <div class="mascot" id="mascot">
+            <div class="mascot-body">
+                <div class="mascot-face">
+                    <div class="mascot-eyes">
+                        <div class="mascot-eye left"></div>
+                        <div class="mascot-eye right"></div>
+                    </div>
+                    <div class="mascot-mouth"></div>
+                </div>
+                <div class="mascot-arms">
+                    <div class="mascot-arm left"></div>
+                    <div class="mascot-arm right"></div>
+                </div>
+            </div>
+            <div class="mascot-shadow"></div>
+        </div>
+    </div>
+
+    <!-- 字体设置面板 -->
+    <div class="font-settings-container" id="fontSettingsContainer">
+        <div class="font-settings-panel">
+            <div class="settings-header">
+                <h3>字体设置</h3>
+                <button id="closeFontSettings" class="close-settings">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <label for="titleFontSizeSlider">标题字体大小</label>
+                    <div class="slider-container">
+                        <input type="range" id="titleFontSizeSlider" min="0.7" max="1.2" step="0.05" value="0.85">
+                        <span id="titleFontSizeValue">85%</span>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label for="cardFontSizeSlider">卡片字体大小</label>
+                    <div class="slider-container">
+                        <input type="range" id="cardFontSizeSlider" min="0.7" max="1.2" step="0.05" value="0.85">
+                        <span id="cardFontSizeValue">85%</span>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label>预设大小</label>
+                    <div class="preset-buttons">
+                        <button class="font-preset" data-size="0.75">小</button>
+                        <button class="font-preset active" data-size="0.85">标准</button>
+                        <button class="font-preset" data-size="0.95">大</button>
+                        <button class="font-preset" data-size="1.1">特大</button>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <button id="resetFontSize" class="reset-button">重置为默认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data-loader.js"></script>
+    <script src="js/tiangou.js"></script>
+    <script type="module" src="js/main.js"></script>
+    
+</body>
+
+</html>

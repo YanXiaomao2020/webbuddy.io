@@ -1,0 +1,115 @@
+/* ===================================
+    搜索框样式 - 定义搜索输入框和按钮的外观与交互
+    功能：设置搜索框的布局、样式和动画效果
+    特点：使用毛玻璃效果、渐变边框和光效动画
+    适用于：网站顶部的搜索功能区域
+   =================================== */
+
+/* 搜索框容器 - 设置搜索输入框和按钮的整体布局和样式 */
+.search-box {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    max-width: 400px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* 搜索框悬停效果 - 使用伪元素实现渐变边框效果 */
+.search-box::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 30px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+/* 搜索框悬停状态 - 显示渐变边框 */
+.search-box:hover::before {
+    opacity: 1;
+}
+
+/* 搜索框聚焦状态 - 当输入框获得焦点时的样式变化 */
+.search-box:focus-within {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* 搜索输入框 - 文本输入区域的样式 */
+#searchInput {
+    flex-grow: 1;
+    border: none;
+    padding: 15px 25px;
+    font-size: calc(1.1rem * var(--title-font-size-multiplier));
+    outline: none;
+    background: transparent;
+    color: #ffffff;
+    font-family: 'RuimeiZhangQingpingHardPen', 'Orbitron', sans-serif;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 搜索输入框占位符文本样式 */
+#searchInput::placeholder {
+    color: rgba(224, 224, 224, 0.6);
+}
+
+/* 搜索按钮 - 提交搜索查询的按钮样式 */
+#searchBtn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 0 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-family: 'RuimeiZhangQingpingHardPen', 'Orbitron', sans-serif;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    font-size: calc(1rem * var(--title-font-size-multiplier));
+}
+
+/* 搜索按钮扫光效果 - 使用伪元素实现光线扫过动画 */
+#searchBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+/* 搜索按钮悬停状态 - 视觉反馈效果 */
+#searchBtn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 搜索按钮悬停状态 - 触发扫光动画 */
+#searchBtn:hover::before {
+    left: 100%;
+}
+
+/* 搜索按钮激活状态 - 点击时的视觉反馈 */
+#searchBtn:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.05);
+}

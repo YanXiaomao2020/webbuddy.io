@@ -1,0 +1,186 @@
+/**
+ * Website Cards CSS Module
+ * 
+ * 此CSS文件负责定义网站卡片的样式和布局，包括：
+ * 1. 网站卡片的网格布局系统
+ * 2. 卡片的外观、过渡效果和交互状态
+ * 3. 网站图标和文字的样式
+ * 4. 搜索高亮效果
+ * 5. 无搜索结果时的提示界面样式
+
+ */
+
+/* 网站卡片 - 设置网站卡片网格布局 */
+.websites {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+/* 网站卡片样式 - 单个网站卡片的布局和外观 */
+.website {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem 0.5rem;
+    border-radius: 8px;
+    transition: all var(--transition-speed) ease;
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 搜索高亮样式 - 当网站匹配搜索关键词时的特殊显示效果 */
+.website.search-highlight {
+    background: rgba(0, 255, 255, 0.2);
+    border: 2px solid rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    animation: pulse 1.5s infinite;
+}
+
+/* 悬停波纹效果 - 伪元素实现的波纹扩散动画 */
+.website::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+    z-index: 0;
+}
+
+/* 网站卡片悬停效果 - 鼠标悬停时的视觉反馈 */
+.website:hover {
+    background: rgba(10, 14, 39, 0.8);
+    border-color: rgba(0, 255, 255, 0.3);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 悬停时激活波纹效果 */
+.website:hover::after {
+    width: 100%;
+    height: 100%;
+}
+
+/* 网站图标样式 - 包括字体图标和图片图标 */
+.website i,
+.website-icon-img {
+    font-size: calc(1.5rem * var(--card-font-size-multiplier));
+    margin-bottom: 0.4rem;
+    color: #00ffff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    transition: transform var(--transition-speed) ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* 图片图标样式 - 针对使用图片作为网站图标的情况 */
+.website-icon-img {
+    width: calc(1.5rem * var(--card-font-size-multiplier));
+    height: calc(1.5rem * var(--card-font-size-multiplier));
+    object-fit: contain;
+}
+
+/* 图标悬停效果 - 轻微放大 */
+.website:hover i,
+.website:hover .website-icon-img {
+    transform: scale(1.1);
+}
+
+/* 网站名称样式 */
+.website span {
+    font-size: calc(1.2rem * var(--card-font-size-multiplier));
+    color: var(--text-color);
+    transition: color var(--transition-speed) ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* 网站名称悬停效果 */
+.website:hover span {
+    color: #00ffff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+/* ==================================
+ * 无搜索结果提示样式
+ * 当用户搜索无结果时显示的友好提示界面
+ * ================================== */
+
+/* 无搜索结果容器 - 居中显示提示内容 */
+.no-results-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 400px;
+    padding: 2rem;
+}
+
+/* 无搜索结果内容卡片 */
+.no-results-content {
+    text-align: center;
+    background: rgba(10, 14, 39, 0.7);
+    border-radius: 15px;
+    padding: 2.5rem;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 无搜索结果图标 */
+.no-results-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 无搜索结果标题 */
+.no-results-title {
+    color: #00ffff;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* 无搜索结果消息文本 */
+.no-results-message {
+    color: #ffffff;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* 无搜索结果操作按钮 */
+.no-results-button {
+    background: linear-gradient(135deg, #00ffff, #0080ff);
+    color: #0a0e27;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+}
+
+/* 按钮悬停效果 */
+.no-results-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.4);
+    background: linear-gradient(135deg, #00ffff, #00a0ff);
+}
